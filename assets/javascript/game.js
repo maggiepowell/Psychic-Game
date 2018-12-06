@@ -17,26 +17,28 @@ var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.l
 
 
 // This function determines which letter was guessed / is run whenever the user presses a key.
-userGuess = document.onkeyup = function(event) {
-  userGuess = event.key;
-  if (userGuess === computerGuess) {
-    win();
-  } else if (guessesLeft - 1 === 0) {
-    lost();
-  } 
-
 // This logic determines the outcome of the game (win/loss/tie), and increments the appropriate number
 
-    if ((userGuess === computerGuess)) {
-      wins++;
-    } else {
-      losses++;
-    }
+userGuess = document.onkeyup = function(event) {
+  userGuess = event.key;
+  if ((userGuess === computerGuess)) {
+    wins++;
+  } 
+  else {
+    guessesLeft--;
+    lettersGuessed.push(userGuess);
+  } 
 
+  if ((guessesLeft == 0)) {
+    alert("You Lose!");
+    guessesLeft = 10;
+    lettersGuessed = [];
+    losses++;
+  }
 
-    // Display the wins/losses/letters guessed.
-    winsText.textContent = "wins: " + wins;
-    lossesText.textContent = "losses: " + losses;
-    guessesLeftText.textContent = "guesses left: " + guessesLeft;
-    lettersGuessedText.textContent = "letters guessed: " + lettersGuessed;
+// Display the wins/losses/letters guessed.
+  winsText.textContent = "wins: " + wins;
+  lossesText.textContent = "losses: " + losses;
+  guessesLeftText.textContent = "guesses left: " + guessesLeft;
+  lettersGuessedText.textContent = "letters guessed: " + lettersGuessed;
 };
