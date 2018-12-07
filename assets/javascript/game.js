@@ -23,6 +23,8 @@ userGuess = document.onkeyup = function(event) {
   userGuess = event.key;
   if ((userGuess === computerGuess)) {
     wins++;
+    alert("You won!");
+    computerGuess;
   } 
   else {
     guessesLeft--;
